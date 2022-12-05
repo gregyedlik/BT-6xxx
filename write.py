@@ -11,21 +11,19 @@ file.close()
 
 start = time.time()
 for batch in startup:
-    while time.time() - start < batch['time']:
-        time.sleep(0.001)
-    for b in batch['data']:
-        ser.write(b)
-        time.sleep(0.0001)
-    print(batch['data'])
+    for rec in batch:
+        while time.time() - start < rec['time']:
+            time.sleep(0.001)
+        ser.write(rec['byte'])
+    print('Batch written.')
 
 print('Startup done')
 
 while 1:
-    start = time.time() - startup[-5]['time']
+    start = time.time() - startup[-4][0]['time']
     for batch in startup[-4:]:
-        while time.time() - start < batch['time']:
-            time.sleep(0.001)
-        for b in batch['data']:
-            ser.write(b)
-            time.sleep(0.0001)
-        print(batch['data'])
+        for rec in batch:
+            while time.time() - start < rec['time']:
+                time.sleep(0.001)
+            ser.write(rec['byte'])
+        print('Batch written.')
