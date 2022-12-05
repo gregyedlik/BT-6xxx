@@ -10,12 +10,20 @@ startup = pickle.load(file)
 file.close()
 
 start = time.time()
+beginning = time.time()
+
+
+def print_batch(batch2print):
+    time_spent = time.time() - beginning
+    print('TX\t' + f'{time_spent:.2f}' + '\t' + str([b['byte'] for b in batch2print]))
+
+
 for batch in startup:
     for rec in batch:
-        while time.time() - start < rec['time']:
+        while time.time() - start < rec['time'] - startup[0][0]['time']:
             time.sleep(0.001)
         ser.write(rec['byte'])
-    print('Batch written.')
+    print_batch(batch)
 
 print('Startup done')
 
@@ -26,4 +34,4 @@ while 1:
             while time.time() - start < rec['time']:
                 time.sleep(0.001)
             ser.write(rec['byte'])
-        print('Batch written.')
+        print_batch(batch)
