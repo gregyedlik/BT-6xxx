@@ -2,13 +2,13 @@ import serial
 import time
 import pickle
 
-ser = serial.Serial("/dev/tty.usbserial-A50285BI", baudrate=9600, parity=serial.PARITY_NONE,
+ser = serial.Serial("/dev/tty.usbserial-2", baudrate=9600, parity=serial.PARITY_NONE,
                     stopbits=serial.STOPBITS_ONE, bytesize=serial.EIGHTBITS, timeout=None)
 
 startup = []
 batch = []
 start = time.time()
-while len(startup) < 9:
+while len(startup) < 7:
     rx = ser.read()
     batch.append({'byte': rx, 'time': time.time() - start})
     if len(batch) > 1:
