@@ -8,7 +8,7 @@ ser = serial.Serial("/dev/tty.usbserial-A50285BI", baudrate=9600, parity=serial.
 startup = []
 batch = []
 start = time.time()
-while len(startup) < 20:
+while len(startup) < 9:
     rx = ser.read()
     batch.append({'byte': rx, 'time': time.time() - start})
     if len(batch) > 1:
