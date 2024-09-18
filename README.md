@@ -18,6 +18,8 @@ I suspect the compatibility because they can be charged with the same chargers.
 
 The repo contains a recorded communication set already, so you can use it with batteries even if you do not have a bike to record from.
 
+NB! What this software cannot do, is to run a Shimano motor controller without an original battery, or to enable the use of custom batteries on Shimano bikes.
+
 ## How to set up on a Raspberry Pi
 Connect the UART and run the python script. When the script starts running, the LEDs come on on the battery, and the power connectors are now enabled both for charging and discharging.
 
